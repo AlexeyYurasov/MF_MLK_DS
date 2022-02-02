@@ -9,22 +9,23 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <meta name="apple-mobile-web-app-title" content="Principle">
     <style type="text/css">
-        * {margin:0; padding:0; }
-        #theCanvas {width:100%;height:100%;}
-        html, body {
-            /* prevent chrome's back/forward navigation on horizontal
-               two-finger scroll */
-            overscroll-behavior-x: none;
-            background:#ffffff;
-        }
-        body {
-          width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: auto;
-        }
+    * {margin:0; padding:0; }
+    #theCanvas {
+      width:100%;
+      height:100%;
+
+    }
+    html, body {
+        /* prevent chrome's back/forward navigation on horizontal
+           two-finger scroll */
+        overscroll-behavior-x: none;
+
+    }
+    body {
+      height: 100%;
+      position:fixed;
+      width: 100%;
+    }
 
 /*devices*/
 
@@ -36,6 +37,7 @@
 .device *::after {
   box-sizing: border-box;
   display: block;
+  overflow: visible;
 }
 
 .device {
@@ -44,12 +46,13 @@
   left: 50%;
   margin: -435px 0 0 -210px;
   transform: scale(0.8);
-  z-index: 1;
-  width: 50%;
+  z-index:-1;
+  overflow: visible;
 }
 
 .device .device-frame {
-  z-index: 1;
+  z-index: 0;
+  overflow: visible;
 }
 
 .device .device-content {
@@ -58,10 +61,13 @@
   background-size: cover;
   object-fit: cover;
   position: relative;
+  overflow: visible;
 }
+
 .device-iphone-8 {
   height: 871px;
   width: 419px;
+  overflow: visible;
 }
 
 .device-iphone-8 .device-frame {
@@ -76,7 +82,7 @@
 .device-iphone-8 .device-content {
   border: 2px solid #222;
   border-radius: 4px;
-  height: 667px;
+  height: 664px;
   width: 375px;
 }
 
@@ -89,7 +95,7 @@
   left: 0;
   position: absolute;
   width: 100%;
-  z-index: 9;
+  z-index: 0;
 }
 
 .device-iphone-8 .device-stripe::after {
@@ -274,11 +280,11 @@
     </style>
 </head>
 <body>
+
   <div class="device device-iphone-8">
     <div class="device-frame">
       <div class="device-content">
 <canvas id="theCanvas"></canvas>
-
 <!-- <div id="madewith" class="container">
 
         <div class="close padme" onmousedown="document.getElementById('madewith').style.display='none';event.stopImmediatePropagation();"> × </div>
